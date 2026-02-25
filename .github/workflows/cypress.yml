@@ -11,6 +11,15 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     spec:
+    #       - cypress/e2e/01-criacao_de_cadastro.cy.js
+    #       - cypress/e2e/02-login.cy.js
+    #       - cypress/e2e/03-abertura_de_conta.cy.js
+    #       - cypress/e2e/04-fundos_transferencia.cy.js
+    #       - cypress/e2e/05-atualizacao_de_cadastro.cy.js
+    #       - cypress/e2e/06-exclusao_contas.cy.js
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -23,29 +32,23 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Limpar diretório de report
-        run: rm -rf cypress/report && mkdir -p cypress/report
+      - name: Limpar diretório de reports
+        run: rm -rf cypress/reports && mkdir -p cypress/reports
 
       - name: Executar testes Cypress
         run: npx cypress run
+        # Para rodar em paralelo com matrix, substitua a linha acima por:
+        # run: npx cypress run --spec "${{ matrix.spec }}"
 
-      - name: Listar arquivos do diretório de report
+      - name: Listar arquivos do diretório de reports
         run: |
-          echo "Arquivos em cypress/report:"
-          ls -lh cypress/report || echo "Diretório não encontrado"
-        if: always()
-
-      - name: Unir relatórios mochawesome
-        run: npm run report:merge
-        if: always()
-
-      - name: Gerar relatório HTML mochawesome
-        run: npm run report:generate
+          echo "Arquivos em cypress/reports:"
+          ls -lh cypress/reports || echo "Diretório não encontrado"
         if: always()
 
       - name: Salvar relatório como artefato
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: cypress/report/
+          path: cypress/reports/
         if: always()
