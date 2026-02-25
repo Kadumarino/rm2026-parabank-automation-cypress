@@ -13,17 +13,29 @@ export const tamanhoTelas = [
   // "iphone-6",
   // "ipad-2",
   // "samsung-note9",
-  // "macbook-15",
+  //"macbook-15",
   "desktop",
 ];
 
-export function runForTamanhosDeTela(describeTitle, testFn) {
+export function runForTamanhosDeTela(describeOrFn, testFn) {
+  const hasTitle = typeof describeOrFn === 'string';
+  const fn = hasTitle ? testFn : describeOrFn;
+
   tamanhoTelas.forEach((tamanho) => {
-    describe(`${describeTitle} - ${tamanho}`, () => {
-      beforeEach(() => {
-        cy.viewport(tamanho !== "desktop" ? tamanho : 1920, 1080);
+    // Quando chamado com título: runForTamanhosDeTela('titulo', fn)
+    // Quando chamado sem título: runForTamanhosDeTela(fn) — usa describe nativo interno
+    if (hasTitle) {
+      describe(`${describeOrFn} - ${tamanho}`, () => {
+        beforeEach(() => {
+          cy.viewport(tamanho !== 'desktop' ? tamanho : 1920, 1080);
+        });
+        fn(tamanho);
       });
-      testFn(tamanho);
-    });
+    } else {
+      beforeEach(() => {
+        cy.viewport(tamanho !== 'desktop' ? tamanho : 1920, 1080);
+      });
+      fn(tamanho);
+    }
   });
 }
