@@ -15,13 +15,13 @@ runForTamanhosDeTela("Validar Cadastro", (tamanho) => {
 
   describe("Validar Cadastro com dados estaticos", () => {
     cadastro.forEach((dadosCadastro, idx) => {
-      it(`CT02.1 - Deve realizar cadastro com dados estaticos [Caso ${idx}] - ${tamanho}`, () => {
+      it(`CT02.1.1 - Deve realizar cadastro com dados estaticos [Caso ${idx}] - ${tamanho}`, () => {
         cy.cadastroComSucessoNativo(dadosCadastro);
       });  
     });
   });
 
-  // Teste para validar campos obrigatórios
+  // Teste para validar campos obrigatórios////
   it(`CT02 - Deve validar campos obrigatórios - ${tamanho}`, () => {
     cy.cadastroIncompleto();
   });
