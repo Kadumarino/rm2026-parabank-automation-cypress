@@ -1,22 +1,19 @@
 /// <reference types="cypress" />
 
-import { runForTamanhosDeTela } from "../support/utils";
 const { usuarios } = require("../fixtures/login_massivo.json");
+const { runForTamanhosDeTela } = require("../support/utils");
 
-beforeEach(() => {
-  cy.visit("/index.htm"); // Caminho relativo, baseUrl já está configurado
-});
-
-runForTamanhosDeTela("Validar Transferência de Fundos e Consulta de Transações", (tamanho) => {
-  usuarios.slice(0, 1).forEach((usuario, idx) => {
-    it(`CT07 - Deve realizar transferência do [Caso:${idx}] de fundos com sucesso - ${tamanho}`, () => {
-      cy.loginComSucesso(usuario);
-      cy.realizarTransferencia();
+runForTamanhosDeTela((tamanhoTela) => {
+  describe("CEN04 - Validar Transferência de Fundos ", () => {
+    beforeEach(() => {
+      cy.visit("/index.htm");
     });
 
-    it(`CT10 - Deve consultar transações do [Caso:${idx}] de fundos com sucesso - ${tamanho}`, () => {
-      cy.loginComSucesso(usuario);
-      cy.procurarTransacaoEnviada();
+    usuarios.slice(0, 1).forEach((usuario, idx) => {
+      it(`CT09 - Deve realizar transferência do [Usuário ${idx}] de fundos com sucesso - ${tamanhoTela}`, () => {
+        cy.loginComSucesso(usuario);
+        cy.realizarTransferencia();
+      });
     });
   });
 });

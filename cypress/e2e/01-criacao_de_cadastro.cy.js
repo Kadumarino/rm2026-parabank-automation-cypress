@@ -1,29 +1,38 @@
 /// <reference types="cypress" />
 
 const cadastro = require("../fixtures/criacao_de_cadastro.json");
-import { runForTamanhosDeTela } from '../support/utils';
+const { runForTamanhosDeTela } = require("../support/utils");
 
-beforeEach(() => {
-  cy.visit("/index.htm"); // Caminho relativo, baseUrl já está configurado
-});
+runForTamanhosDeTela((tamanhoTela) => {
 
+  describe("CEN01 - Validar Cadastro", () => {
 
-runForTamanhosDeTela("Validar Cadastro", (tamanho) => {
-  it(`CT01 - Deve realizar cadastro com sucesso - ${tamanho}`, () => {
-    cy.cadastroComSucesso();
+  beforeEach(() => {
+    cy.visit("/index.htm");
   });
 
-  describe("Validar Cadastro com dados estaticos", () => {
-    cadastro.forEach((dadosCadastro, idx) => {
-      it(`CT02.1.1 - Deve realizar cadastro com dados estaticos [Caso ${idx}] - ${tamanho}`, () => {
-        cy.cadastroComSucessoNativo(dadosCadastro);
-      });  
+  afterEach(() => {
+    cy.get('body').then(($body) => {
+      if ($body.find('a:contains("Log Out")').length > 0) {
+        cy.logout();
+      }
     });
   });
+  
+  it(`CT01 - Deve realizar cadastro com sucesso (dados dinâmicos) - ${tamanhoTela}`, () => {
+    cy.cadastroComSucesso();
+    
+  });
 
-  // Teste para validar campos obrigatórios////
-  it(`CT02 - Deve validar campos obrigatórios - ${tamanho}`, () => {
-    cy.cadastroIncompleto();
+    cadastro.forEach((dadosCadastro, idx) => {
+      it(`CT02 - Deve realizar cadastro com dados estáticos [Usuário ${idx}] - ${tamanhoTela}`, () => {
+        cy.cadastroComSucessoNativo(dadosCadastro);
+      });
+    });
+
+    it(`CT03 - Deve validar campos obrigatórios - ${tamanhoTela}`, () => {
+      cy.cadastroIncompleto();
+    });
   });
 });
 

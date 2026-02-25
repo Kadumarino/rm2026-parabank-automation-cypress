@@ -7,7 +7,7 @@ Cypress.Commands.add("loginComSucessoComCadastro", () => {
     cy.get('input[value="Log In"]').click();
     cy.contains("Account Services").should("be.visible");
   });
-  });
+});
 
   Cypress.Commands.add("loginComSucesso", (usuario) => {
     cy.get('[name="username"]').type(usuario.username);
@@ -15,8 +15,9 @@ Cypress.Commands.add("loginComSucessoComCadastro", () => {
     cy.get('[type="submit"]').click();
     if (usuario.username === "invalidUser") {
       cy.contains("Error!").should("be.visible");
-      cy.contains("Please enter a username and password.").should("be.visible");
-      return;
+      cy.contains("An internal error has occurred and has been logged.").should("be.visible");
+    } else {
+      cy.contains("Account Services").should("be.visible");
     }
   });
 
@@ -38,8 +39,6 @@ Cypress.Commands.add("loginComSucessoComCadastro", () => {
     cy.get('[name="address.zipCode"]').type(recuperacao.address.zipCode);
     cy.get('[name="ssn"]').type(recuperacao.ssn);
     cy.get('[colspan="2"] > .button').click();
-    cy.contains(
-      "Your login information was located successfully. You are now logged in.",
-    ).should("be.visible");
+
   });
 

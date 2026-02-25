@@ -3,38 +3,36 @@
 const { usuarios } = require("../fixtures/login_massivo.json");
 const recuperacaoFixture = require("../fixtures/recuperacao_de_conta.json");
 
+const { runForTamanhosDeTela } = require("../support/utils");
 
-import { runForTamanhosDeTela } from '../support/utils';
+runForTamanhosDeTela((tamanhoTela) => {
 
-beforeEach(() => {
-  cy.visit("/index.htm"); // Caminho relativo, baseUrl já está configurado
-});
+  describe("CEN02 - Validar Login", () => {
 
+    beforeEach(() => {
+      cy.visit("/index.htm");
+    });
 
-runForTamanhosDeTela("CT03 - Validar Cadastro e Login", (tamanho) => {
-    it(`Deve realizar cadastro e login com sucesso - ${tamanho}`, () => {
+    it(`CT04 - Deve realizar cadastro e login com sucesso - ${tamanhoTela}`, () => {
       cy.cadastroComSucesso();
       cy.logout();
       cy.loginComSucessoComCadastro();
     });
 
-  });
-runForTamanhosDeTela("CT03.1/CT04 - Validar Login com Massa Fixa", (tamanho) => {
-  usuarios.slice(0, 2).forEach((usuario, idx) => {
-    it(`CT03.1 - Login Existente [Usuário ${idx}] - ${tamanho}`, () => {
-      cy.loginComSucesso(usuario);
+    usuarios.slice(0, 2).forEach((usuario, idx) => {
+      it(`CT05 - Login Existente [Usuário ${idx}] - ${tamanhoTela}`, () => {
+        cy.loginComSucesso(usuario);
+      });
+
+      it(`CT06 - Login Inválido [Usuário ${idx}] - ${tamanhoTela}`, () => {
+        cy.loginInvalido(usuario);
+      });
     });
 
-    it(`CT04 - Login Inválido [Usuário ${idx}] - ${tamanho}`, () => {
-      cy.loginInvalido(usuario);
-    });
-  });
-});
-
-runForTamanhosDeTela("CT05 - Validar Recuperação de Conta", (tamanho) => {
-  recuperacaoFixture.forEach((dadosRecuperacao, idx) => {
-    it(`Deve recuperar conta [Caso ${idx}] - ${tamanho}`, () => {
-      cy.recuperacaoDeConta(dadosRecuperacao);
+    recuperacaoFixture.forEach((dadosRecuperacao, idx) => {
+      it(`CT07 - Deve recuperar conta [Caso ${idx}] - ${tamanhoTela}`, () => {
+        cy.recuperacaoDeConta(dadosRecuperacao);
+      });
     });
   });
 });

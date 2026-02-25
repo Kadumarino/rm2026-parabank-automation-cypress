@@ -39,7 +39,7 @@ jobs:
         run: npx cypress run
         # Para rodar em paralelo com matrix, substitua a linha acima por:
         # run: npx cypress run --spec "${{ matrix.spec }}"
-        continue-on-error: true
+        # continue-on-error: true
 
       - name: Listar arquivos do diretório de reports
         run: |
