@@ -21,6 +21,7 @@ runForTamanhosDeTela("Validar Cadastro", (tamanho) => {
     });
   });
 
+  // Teste para validar campos obrigatórios
   it(`CT02 - Deve validar campos obrigatórios - ${tamanho}`, () => {
     cy.cadastroIncompleto();
   });
