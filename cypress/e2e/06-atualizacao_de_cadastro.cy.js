@@ -9,21 +9,13 @@ runForTamanhosDeTela((tamanhoTela) => {
       cy.visit("/index.htm");
     });
 
-    afterEach(() => {
-      cy.get("body").then(($body) => {
-        if ($body.find('a:contains("Log Out")').length > 0) {
-          cy.logout();
-        }
-      });
-    });
-
     usuarios.slice(0, 1).forEach((usuario, idx) => {
       it(`CT11 - Deve realizar atualização de cadastro com sucesso - ${tamanhoTela} - Usuário ${idx}`, () => {
         cy.loginComSucesso(usuario);
         cy.atualizarCadastro();
       });
 
-      it(`CT12 - Deve realizar o erro ao atualizar cadastro - ${tamanhoTela} - Usuário ${idx}`, () => {
+      it(`CT12 - Deve realizar o erro ao atualizar com dados invalidos - ${tamanhoTela} - Usuário ${idx}`, () => {
         cy.loginComSucesso(usuario);
         cy.erroAtualizacaoCadastro();
       });

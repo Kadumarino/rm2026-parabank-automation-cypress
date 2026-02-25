@@ -12,13 +12,6 @@ runForTamanhosDeTela((tamanhoTela) => {
       cy.visit("/index.htm");
     });
 
-      afterEach(() => {
-    cy.get('body').then(($body) => {
-      if ($body.find('a:contains("Log Out")').length > 0) {
-        cy.logout();
-      }
-    });
-  });
 
   usuarios.slice(0, 2).forEach((usuario, idx) => {
     it(`CT08 - Deve realizar a abertura de conta [Usuário ${idx}] - ${tamanhoTela}`, () => {
