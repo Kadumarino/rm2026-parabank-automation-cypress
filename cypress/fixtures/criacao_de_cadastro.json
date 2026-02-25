@@ -1,0 +1,30 @@
+[
+    {
+        "firstName": "Carlos ",
+        "lastName": " Junior",
+        "address": {
+            "street": "Rua Teste A",
+            "city": "Cidade Teste A",
+            "state": "Estado Teste A",
+            "zipCode": "123456789"
+        },
+        "phoneNumber": "1999999999",
+        "ssn": "123456789",
+        "username": "Carlos",
+        "password": "111"
+    },
+    {
+        "firstName": "Test Fname",
+        "lastName": "Test Lname",
+        "address": {
+            "street": "Test Street",
+            "city": "Test City",
+            "state": "Test State",
+            "zipCode": "12345"
+        },
+        "phoneNumber": "1234567890",
+        "ssn": "123456789",
+        "username": "Teste Automation",
+        "password": "Password123"
+    }
+]

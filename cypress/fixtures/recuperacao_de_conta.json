@@ -1,0 +1,14 @@
+[
+    {
+        "firstName": "Teste Automation",
+        "lastName": "Teste Automation",
+        "address": {
+            "street": "Rua Teste A",
+            "city": "Cidade Teste A",
+            "state": "Estado Teste A",
+            "zipCode": "123456789"
+        },
+        "phoneNumber": "1999999999",
+        "ssn": "123456789"
+    }
+]

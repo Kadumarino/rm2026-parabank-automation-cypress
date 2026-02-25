@@ -1,0 +1,52 @@
+[
+    {
+        "firstName": "Teste Automation 1",
+        "lastName": "Silva",
+        "address": "Rua Teste 1",
+        "city": "Cidade A",
+        "state": "Estado A",
+        "zipCode": "12345",
+        "phoneNumber": "1999999991",
+        "ssn": "123456781"
+    },
+    {
+        "firstName": "Teste Automation 2",
+        "lastName": "Souza",
+        "address": "Rua Teste 2",
+        "city": "Cidade B",
+        "state": "Estado B",
+        "zipCode": "54321",
+        "phoneNumber": "1999999992",
+        "ssn": "123456782"
+    },
+    {
+        "firstName": "Teste Automation 3",
+        "lastName": "Oliveira",
+        "address": "Rua Teste 3",
+        "city": "Cidade C",
+        "state": "Estado C",
+        "zipCode": "67890",
+        "phoneNumber": "1999999993",
+        "ssn": "123456783"
+    },
+    {
+        "firstName": "Teste Automation 4",
+        "lastName": "Pereira",
+        "address": "Rua Teste 4",
+        "city": "Cidade D",
+        "state": "Estado D",
+        "zipCode": "98765",
+        "phoneNumber": "1999999994",
+        "ssn": "123456784"
+    },
+    {
+        "firstName": "Teste Automation 5",
+        "lastName": "Lima",
+        "address": "Rua Teste 5",
+        "city": "Cidade E",
+        "state": "Estado E",
+        "zipCode": "11223",
+        "phoneNumber": "1999999995",
+        "ssn": "123456785"
+    }
+]
