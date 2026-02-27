@@ -21,9 +21,14 @@ cd rm2026-parabank-automation-cypress
 
 # 2. Instale as dependências
 npm install
+npm init -y
+npm install cypress
+npm install --save-dev cypress-mochawesome-reporter
+npm install faker
+
 ```
 
-> Isso instala automaticamente: **Cypress**, **@faker-js/faker**, **cypress-mochawesome-reporter** e **npm-run-all**.
+
 
 ---
 
